@@ -132,7 +132,7 @@ void alignLists(List* list1, List* list2) {
         len2++;
     }
 }
-
+	//soma_digitos_inteiros (Lista* li1,Lista* li2,Lista* li3), Retorna o vai um
 int sumIntegerDigits(List* list1, List* list2, List* result) {
     Node* current1 = list1->head;
     Node* current2 = list2->head;
@@ -158,6 +158,25 @@ void freeList(List* list) {
     }
     free(list);
 }
+
+    //soma_digitos_decimais (Lista* li1,Lista* li2,Lista* li3), Retorna o vai um
+int sumDecimalDigits(List* list1, List* list2, List* result) {
+    Node* current1 = list1->head;
+    Node* current2 = list2->head;
+    int carry = 0;
+
+    while (current1 != NULL && current1->digit != 'D' &&
+           current2 != NULL && current2->digit != 'D') {
+        int sum = current1->digit + current2->digit + carry;
+        carry = sum / 10;
+        insertDigit(result, sum % 10);
+        current1 = current1->next;
+        current2 = current2->next;
+    }
+
+    return carry;
+}
+
 
 //Marco Antônio Bicalho de Oliveira n° USP - 15474741 ----------------------------------header.h
 
@@ -185,6 +204,7 @@ void printList(List* list);
 void printResult(List* result, int carryOut);
 void alignLists(List* list1, List* list2);
 int sumIntegerDigits(List* list1, List* list2, List* result);
+int sumDecimalDigits(List* list1, List* list2, List* result);
 void freeList(List* list);
 
 #endif // HEADER_H
